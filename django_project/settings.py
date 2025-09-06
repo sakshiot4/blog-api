@@ -37,10 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.contrib.sites", #Build in django framework for managing multiple sites with a single Django installation.
 
     #3rd party apps.
-    "rest_framework",
-    "corsheaders",
+    "rest_framework", #for building Web APIs.
+    "corsheaders", #for handling CORS (Cross-Origin Resource Sharing) in Django.
+    "rest_framework.authtoken", #for token based authentication.
+    "allauth", #for authentication, registration, account management.
+    "allauth.account", #for email and password authentication.
+    "allauth.socialaccount", #for social media authentication.
+    "dj_rest_auth", #for login, logout, password reset, password change, user details.
+    "dj_rest_auth.registration", #for registration.
 
     #my apps.
     "accounts",
@@ -54,8 +61,10 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',#required by allauth. Tracks the user authentication state across requests.
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'django_project.urls'
@@ -67,13 +76,17 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.request',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request', #required by allauth.
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" #for development only.
+SITE_ID = 1 #required by allauth.
 
 WSGI_APPLICATION = 'django_project.wsgi.application'
 
@@ -136,6 +149,12 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
             "rest_framework.permissions.IsAuthenticated",
     ],
+
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication", #for browsable API and the ability to log in and logout.
+        #"rest_framework.authentication.BasicAuthentication", #to pass session id in the HTTP header.
+        "rest_framework.authentication.TokenAuthentication", #to pass token in the HTTP header.
+    ]
 }
 
 CORS_ORIGIN_WHITELIST = [
