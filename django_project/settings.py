@@ -30,7 +30,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "blogapi.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "blogapi.onrender.com", ".onrender.com"]
 
 
 # Application definition
@@ -170,7 +170,7 @@ REST_FRAMEWORK = {
 SPECTACULAR_SETTINGS = {
     "TITLE" : "Blog API Project",
     "DESCRIPTION" : "A simple blog API to learn about DRF",
-    "VERSION" : "1.0.0.", #version of your API.
+    "VERSION" : "1.0.0", #version of your API.
 }
 
 CORS_ORIGIN_WHITELIST = [

@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: blogapi
+    env: python
+    # Build commands: install dependencies, collect static files, run migrations
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+      python manage.py migrate
+    # Start the app using Gunicorn
+    startCommand: "gunicorn django_project.wsgi:application"
+    envVars:
+      - key: SECRET_KEY
+        fromSecret: django-secret-key
+      - key: DEBUG
+        value: "False"
+      - key: DATABASE_URL
+        fromDatabase: blogapi-db
+      - key: ALLOWED_HOSTS
+        value: "blogapi.onrender.com,.onrender.com"
+
+databases:
+  - name: blogapi-db
+    databaseName: blogapi
+    user: bloguser
+    plan: free

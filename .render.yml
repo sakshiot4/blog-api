@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: blogapi
-    env: python
-    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate"
-    startCommand: "gunicorn django_project.wsgi:application"
