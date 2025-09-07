@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog API</title>
+    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <header class="bg-white shadow-md">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-primary">📝 Blog API</h1>
+            <nav>
+                <ul class="flex space-x-6 font-medium">
+                    <li><a href="/admin/" class="hover:text-primary">Admin</a></li>
+                    <li><a href="/api/v1/dj-rest-auth/registration/" class="hover:text-primary">Register</a></li>
+                    <li><a href="/api/v1/dj-rest-auth/login/" class="hover:text-primary">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <main class="flex-1">
+        <section class="bg-base-200 py-20">
+            <div class="max-w-3xl mx-auto text-center px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">
+                    Welcome to the Blog API 🚀
+                </h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    A RESTful API built with <span class="font-semibold">Django</span> & <span
+                        class="font-semibold">DRF</span>.
+                    That manages <strong>blogs</strong>, <strong>user permissions</strong><strong>, authorization</strong>, and <strong>authentication</strong>
+                    .
+                </p>
+                <div class="space-x-4">
+                    <a href="/api/schema/swagger-ui/" class="btn btn-primary">Swagger Docs</a>
+                    <a href="/api/schema/redoc" class="btn btn-primary">Redoc Docs</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Endpoints -->
+
+        <section class="max-w-5xl mx-auto px-6 py-16">
+            <h3 class="text-2xl font-bold mb-6">🔗 Available Endpoints</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card bg-white shadow-md hover:shadow-lg transition p-6">
+                    <a href="/api/v1/" class="font-semibold text-lg">/api/v1/</a>
+                    <p class="text-gray-600">List and create Blogs</p>
+                </div>
+                <div class="card bg-white shadow-md hover:shadow-lg transition p-6">
+                    <a href="/api/v1/1" class="font-semibold text-lg">/api/v1/1</a>
+                    <p class="text-gray-600">Detailed blog view (only author can edit)</p>
+                </div>
+                <div class="card bg-white shadow-md hover:shadow-lg transition p-6">
+                    <a href="/api/v1/dj-rest-auth/registration"
+                        class="font-semibold text-lg">/dj-rest-auth/registration</a>
+                    <p class="text-gray-600">Registration Endpoint</p>
+                </div>
+                <div class="card bg-white shadow-md hover:shadow-lg transition p-6">
+                    <a href="api/v1/dj-rest-auth/login" class="font-semibold text-lg">/dj-rest-auth/login</a>
+                    <p class="text-gray-600">Login Endpoint</p>
+                </div>
+
+                <div class="card bg-white shadow-md hover:shadow-lg transition p-6">
+                    <a href="api/v1/dj-rest-auth/logout" class="font-semibold text-lg">/dj-rest-auth/logout</a>
+                    <p class="text-gray-600">Logout Endpoint</p>
+                </div>
+                <div class="card bg-white shadow-md hover:shadow-lg transition p-6">
+                    <a href="api/v1/dj-rest-auth/password/reset"
+                        class="font-semibold text-lg">/dj-rest-auth/password/reset</a>
+                    <p class="text-gray-600">To reset password</p>
+                </div>
+                <div class="card bg-white shadow-md hover:shadow-lg transition p-6">
+                    <a href="api/v1/dj-rest-auth/password/reset/confirm"
+                        class="font-semibold text-lg">/password/reset/confirm</a>
+                    <p class="text-gray-600">Password reset e-mail link is confirmed</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-base-300 py-4">
+        <div class="text-center text-sm text-gray-700">
+            © 2025 <strong>Blog API</strong> — Built with Django REST Framework & TailwindCSS
+        </div>
+    </footer>
+
+</body>
+
+</html>

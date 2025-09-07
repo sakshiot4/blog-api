@@ -55,10 +55,13 @@ INSTALLED_APPS = [
     "dj_rest_auth", #for login, logout, password reset, password change, user details.
     "dj_rest_auth.registration", #for registration.
     "drf_spectacular", #for API documentation.
+    "tailwind",
+    "theme", #tailwind css app.
 
     #my apps.
     "accounts",
     "posts",
+    "core",
 ]
 
 MIDDLEWARE = [
@@ -92,6 +95,9 @@ TEMPLATES = [
         },
     },
 ]
+
+TAILWIND_APP_NAME = "theme"
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" #for development only.
 SITE_ID = 1 #required by allauth.
@@ -179,5 +185,5 @@ CORS_ORIGIN_WHITELIST = [
 ]
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
-    "https://blogapi.up.railway.app",
+    "https://blog-api-8nvl.onrender.com/"
 ]
