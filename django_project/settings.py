@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from environs import Env
+
+env = Env()
+env.read_env() #reads the .env file.
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,6 +52,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount", #for social media authentication.
     "dj_rest_auth", #for login, logout, password reset, password change, user details.
     "dj_rest_auth.registration", #for registration.
+    "drf_spectacular", #for API documentation.
 
     #my apps.
     "accounts",
@@ -154,7 +159,15 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication", #for browsable API and the ability to log in and logout.
         #"rest_framework.authentication.BasicAuthentication", #to pass session id in the HTTP header.
         "rest_framework.authentication.TokenAuthentication", #to pass token in the HTTP header.
-    ]
+    ],
+
+    "DEFAULT_SCHEMA_CLASS" : "drf_spectacular.openapi.AutoSchema", #for API documentation.
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE" : "Blog API Project",
+    "DESCRIPTION" : "A simple blog API to learn about DRF",
+    "VERSION" : "1.0.0.", #version of your API.
 }
 
 CORS_ORIGIN_WHITELIST = [
