@@ -15,9 +15,3 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_project.settings')
 
 application = get_wsgi_application()
 
-# Auto create superuser
-try:
-    from .create_superuser import run
-    run()
-except Exception as e:
-    print(f"Superuser creation skipped: {e}")
